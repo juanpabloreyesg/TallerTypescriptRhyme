@@ -82,7 +82,7 @@ export class Aprendiz{
             }
                         
         }
-        if(total_cursos_ap > 0)
+        if(total_cursos_ap == 0)
             return 0;
         else
             return total_nota/total_cursos_ap;

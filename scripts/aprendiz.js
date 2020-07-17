@@ -81,7 +81,7 @@ var Aprendiz = /** @class */ (function () {
                 total_cursos_ap += 1;
             }
         }
-        if (total_cursos_ap > 0)
+        if (total_cursos_ap == 0)
             return 0;
         else
             return total_nota / total_cursos_ap;

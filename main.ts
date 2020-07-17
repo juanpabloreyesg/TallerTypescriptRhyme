@@ -15,8 +15,8 @@ btnfilterByName.onclick = () => filtrarCursosPorNombre();
 
 mostrarDatosAprendiz(ap);
 mostrarCursosAprendiz(ap.cursos);
-mostrarCursosCertificados();
-mostrarPromedioCursosAprobados();
+mostrarCursosCertificados(ap);
+mostrarPromedioCursosAprobados(ap);
 
 function mostrarDatosAprendiz(aprendiz: Aprendiz): void{
     let tbodyElemento = document.createElement("tbody");
@@ -77,7 +77,7 @@ function limpiarCursosEnTabla(): void{
     }
 }
 
-function mostrarCursosCertificados(): void{
+function mostrarCursosCertificados(ap: Aprendiz): void{
     let certificados = ap.darCursosCertificados();
     let trElement = document.createElement("tr");
     trElement.innerHTML = `<td><b>Cursos certificados:</b></td>
@@ -86,7 +86,7 @@ function mostrarCursosCertificados(): void{
                 
 }
 
-function mostrarPromedioCursosAprobados(): void{
+function mostrarPromedioCursosAprobados(ap: Aprendiz): void{
     let promedio = ap.darPromedioAprobados();
     let trElement = document.createElement("tr");
     trElement.innerHTML = `<td><b>Promedio cursos aprobados:</b></td>

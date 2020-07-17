@@ -7,8 +7,8 @@ var inputSearchBox = document.getElementById("search-box");
 btnfilterByName.onclick = function () { return filtrarCursosPorNombre(); };
 mostrarDatosAprendiz(ap);
 mostrarCursosAprendiz(ap.cursos);
-mostrarCursosCertificados();
-mostrarPromedioCursosAprobados();
+mostrarCursosCertificados(ap);
+mostrarPromedioCursosAprobados(ap);
 function mostrarDatosAprendiz(aprendiz) {
     var tbodyElemento = document.createElement("tbody");
     tbodyElemento.innerHTML = "\n    <tr>\n    <img src=\"./" + aprendiz.avatar + "\" height=\"100\" alt=\"Avatar\">\n    </tr>\n    <tr>\n    <td>Nombres:</td>\n    <td>" + aprendiz.nombres + "</td>\n    </tr>\n    <tr>\n    <td>Apellidos:</td>\n    <td>" + aprendiz.apellidos + "</td>\n    </tr>\n    <tr>\n    <td>Nivel Educativo:</td>\n    <td>" + aprendiz.nivelEducativo + "</td>\n    </tr>\n    <tr>\n    <td>Edad:</td>\n    <td>" + aprendiz.edad + "</td>\n    </tr>";
@@ -38,13 +38,13 @@ function limpiarCursosEnTabla() {
         }
     }
 }
-function mostrarCursosCertificados() {
+function mostrarCursosCertificados(ap) {
     var certificados = ap.darCursosCertificados();
     var trElement = document.createElement("tr");
     trElement.innerHTML = "<td><b>Cursos certificados:</b></td>\n                            <td>" + certificados + "</td>";
     estadisticasTbody.appendChild(trElement);
 }
-function mostrarPromedioCursosAprobados() {
+function mostrarPromedioCursosAprobados(ap) {
     var promedio = ap.darPromedioAprobados();
     var trElement = document.createElement("tr");
     trElement.innerHTML = "<td><b>Promedio cursos aprobados:</b></td>\n                            <td>" + promedio + "</td>";

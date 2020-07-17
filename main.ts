@@ -1,12 +1,22 @@
 import { Aprendiz } from './aprendiz.js'
+import { Curso } from './curso.js'
 import {NivelEducativo} from './aprendiz.js'
+
 import {ap} from './data.js'
 
 let aprendizTbody: HTMLElement = document.getElementById('aprendiz')!;
 let cursosTbody: HTMLElement = document.getElementById('cursos')!;
+let estadisticasTbody: HTMLElement = document.getElementById('estadisticas')!;
+
+const btnfilterByName: HTMLElement = document.getElementById("button-filterByName")!;
+const inputSearchBox: HTMLInputElement = <HTMLInputElement> document.getElementById("search-box")!;
+
+btnfilterByName.onclick = () => filtrarCursosPorNombre();
 
 mostrarDatosAprendiz(ap);
-mostrarCursosAprendiz(ap);
+mostrarCursosAprendiz(ap.cursos);
+mostrarCursosCertificados();
+mostrarPromedioCursosAprobados();
 
 function mostrarDatosAprendiz(aprendiz: Aprendiz): void{
     let tbodyElemento = document.createElement("tbody");
@@ -34,8 +44,8 @@ function mostrarDatosAprendiz(aprendiz: Aprendiz): void{
 
 }
 
-function mostrarCursosAprendiz(aprendiz: Aprendiz): void{
-    let cursos = aprendiz.cursos;
+function mostrarCursosAprendiz(cursos: Curso[]): void{
+    
     cursos.forEach((curso) => {
         let trElement = document.createElement("tr");
         trElement.innerHTML = `<td>${curso.nombre}</td>
@@ -45,4 +55,42 @@ function mostrarCursosAprendiz(aprendiz: Aprendiz): void{
                                <td>${curso.anio}</td>`;
         cursosTbody.appendChild(trElement);
       });
+}
+
+function filtrarCursosPorNombre(): void{
+    let text = inputSearchBox.value;
+    text = (text==null)?'':text;
+    limpiarCursosEnTabla();
+    let cursosFiltrados: Curso[] = buscarCursosPorNombre(text, ap.cursos);
+    mostrarCursosAprendiz(cursosFiltrados);    
+}
+
+function buscarCursosPorNombre(nombre:string, cursos:Curso[]): Curso[]{
+    return nombre == ''?cursos:cursos.filter(c => c.nombre.match(nombre));
+}
+
+function limpiarCursosEnTabla(): void{
+    while (cursosTbody.hasChildNodes()) {
+        if (cursosTbody.firstChild != null) {
+            cursosTbody.removeChild(cursosTbody.firstChild);
+    }
+    }
+}
+
+function mostrarCursosCertificados(): void{
+    let certificados = ap.darCursosCertificados();
+    let trElement = document.createElement("tr");
+    trElement.innerHTML = `<td><b>Cursos certificados:</b></td>
+                            <td>${certificados}</td>`;
+    estadisticasTbody.appendChild(trElement);
+                
+}
+
+function mostrarPromedioCursosAprobados(): void{
+    let promedio = ap.darPromedioAprobados();
+    let trElement = document.createElement("tr");
+    trElement.innerHTML = `<td><b>Promedio cursos aprobados:</b></td>
+                            <td>${promedio}</td>`;
+    estadisticasTbody.appendChild(trElement);
+                
 }

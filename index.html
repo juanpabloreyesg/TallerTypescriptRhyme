@@ -9,10 +9,16 @@
     <table class="table" id="aprendiz">
 
     </table>
-    <script type="module" src="./scripts/main.js" ></script>
 
-    <h2>Cursos Tomados</h2>
-    <table class="table" id="cursos">
+    <h2>Estadísticas</h2>
+    <table class="table" id="estadisticas">        
+    </table>
+
+    <h2>Cursos tomados</h2>
+    <input type="text" class="form-control" id="search-box"
+    placeholder="Filtrar por nombre">
+    <button type="button" id="button-filterByName" class="btn btn-success">Aplicar</button>
+    <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th>Nombre</th>
@@ -22,8 +28,10 @@
                 <th>Año</th>
             </tr>
         </thead>
-        <tbody id="courses">
+        <tbody id="cursos">
         </tbody>
+
     </table>
+    <script type="module" src="./scripts/main.js" ></script>
 </body>
 </html>

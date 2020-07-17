@@ -63,6 +63,29 @@ var Aprendiz = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Aprendiz.prototype.darCursosCertificados = function () {
+        var total_cursos_ap = 0;
+        for (var index = 0; index < this.cursos.length; index++) {
+            if (this._cursos[index].certificado) {
+                total_cursos_ap += 1;
+            }
+        }
+        return total_cursos_ap;
+    };
+    Aprendiz.prototype.darPromedioAprobados = function () {
+        var total_nota = 0;
+        var total_cursos_ap = 0;
+        for (var index = 0; index < this.cursos.length; index++) {
+            if (this._cursos[index].calificacion > 75) {
+                total_nota += this._cursos[index].calificacion;
+                total_cursos_ap += 1;
+            }
+        }
+        if (total_cursos_ap > 0)
+            return 0;
+        else
+            return total_nota / total_cursos_ap;
+    };
     return Aprendiz;
 }());
 export { Aprendiz };

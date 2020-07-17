@@ -59,4 +59,33 @@ export class Aprendiz{
         return this._cursos;
     }
 
+    public darCursosCertificados():number{
+        let total_cursos_ap = 0;
+        for (let index = 0; index < this.cursos.length; index++)
+        {
+            if(this._cursos[index].certificado){
+                total_cursos_ap += 1;
+            }
+                  
+        }
+        return total_cursos_ap;
+    }
+
+    public darPromedioAprobados():number{
+        let total_nota = 0;
+        let total_cursos_ap = 0;
+        for (let index = 0; index < this.cursos.length; index++)
+        {
+            if(this._cursos[index].calificacion > 75){
+                total_nota += this._cursos[index].calificacion;
+                total_cursos_ap += 1;
+            }
+                        
+        }
+        if(total_cursos_ap > 0)
+            return 0;
+        else
+            return total_nota/total_cursos_ap;
+    }
+
 }
